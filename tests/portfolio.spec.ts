@@ -3,6 +3,7 @@ import { expect, test } from '@playwright/test';
 test('home exposes the portfolio structure and seven projects', async ({ page }) => {
 	await page.goto('/');
 	await expect(page).toHaveTitle(/권혁호/);
+	await expect(page.getByRole('link', { name: '권혁호 포트폴리오 홈' })).toHaveText('HYUKHO');
 	await expect(page.getByRole('heading', { level: 1 })).toContainText('설명 가능한 구조');
 	await expect(page.locator('.project-card')).toHaveCount(7);
 	await expect(page.getByRole('link', { name: /항공 검색 모듈/ })).toBeVisible();

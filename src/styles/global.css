@@ -25,8 +25,7 @@ p, h1, h2, h3 { margin-top: 0; }
 .site-header { display: flex; align-items: center; justify-content: space-between; width: min(calc(100% - 48px), var(--max)); height: 92px; margin-inline: auto; border-bottom: 1px solid var(--line); }
 .site-header nav { display: flex; gap: 30px; font-size: .9rem; }
 .site-header nav a:hover, .site-header nav a:focus-visible { color: var(--blue); }
-.wordmark { font: 800 1.25rem/1 Arial, sans-serif; letter-spacing: -.06em; }
-.wordmark span { color: var(--blue); }
+.wordmark { font: 800 .86rem/1 Arial, sans-serif; letter-spacing: .08em; }
 .hero { display: grid; grid-template-columns: 1fr .72fr; gap: 7vw; align-items: end; min-height: 680px; padding: 100px 0 110px; }
 .hero > .eyebrow { grid-column: 1 / -1; align-self: start; }
 .hero h1 { margin-bottom: 0; font-size: clamp(3.6rem, 7.5vw, 7.3rem); font-weight: 650; line-height: .98; letter-spacing: -.075em; }
