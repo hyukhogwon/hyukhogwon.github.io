@@ -1,0 +1,29 @@
+---
+interface Props {
+	id: string;
+	title: string;
+	kicker: string;
+	summary: string;
+	period: string;
+	stack: string[];
+	index: number;
+}
+
+const { id, title, kicker, summary, period, stack, index } = Astro.props;
+---
+
+<article class="project-card">
+	<a href={`/projects/${id}/`} aria-label={`${title} 프로젝트 자세히 보기`}>
+		<div class="project-card__meta">
+			<span>{String(index).padStart(2, '0')}</span>
+			<span>{period}</span>
+		</div>
+		<p class="eyebrow">{kicker}</p>
+		<h3>{title}</h3>
+		<p class="project-card__summary">{summary}</p>
+		<ul class="tag-list" aria-label="기술 스택">
+			{stack.slice(0, 4).map((item) => <li>{item}</li>)}
+		</ul>
+		<span class="text-link">의사결정과 코드 보기 <span aria-hidden="true">↗</span></span>
+	</a>
+</article>

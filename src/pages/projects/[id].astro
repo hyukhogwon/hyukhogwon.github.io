@@ -1,0 +1,33 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+	const projects = await getCollection('projects');
+	return projects.map((project) => ({ params: { id: project.id }, props: { project } }));
+}
+
+interface Props { project: CollectionEntry<'projects'>; }
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<BaseLayout title={`${project.data.title} — 권혁호`} description={project.data.summary}>
+	<article class="case-study page-shell">
+		<a class="back-link" href="/#projects">← 프로젝트 목록</a>
+		<header class="case-study__header">
+			<p class="eyebrow">{project.data.kicker} · {project.data.period}</p>
+			<h1>{project.data.title}</h1>
+			<p class="case-study__lede">{project.data.summary}</p>
+			<div class="case-study__facts">
+				<div><span>Role</span><p>{project.data.role}</p></div>
+				<div><span>Stack</span><p>{project.data.stack.join(' · ')}</p></div>
+			</div>
+			<ul class="impact-list" aria-label="핵심 성과">{project.data.impact.map((item) => <li>{item}</li>)}</ul>
+		</header>
+		<div class="prose"><Content /></div>
+		<footer class="case-study__footer"><a class="button" href="/#projects">다른 프로젝트 보기</a></footer>
+	</article>
+</BaseLayout>
